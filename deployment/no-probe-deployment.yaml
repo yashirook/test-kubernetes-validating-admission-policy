@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: no-probe-deployment
+  namespace: default
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: no-probe-deployment
+  template:
+    metadata:
+      labels:
+        app: no-probe-deployment
+    spec:
+      containers:
+      - name: app
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+      - name: sidecar
+        image: nginx:latest
+        ports:
+        - containerPort: 80
