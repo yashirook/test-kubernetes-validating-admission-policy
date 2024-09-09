@@ -23,7 +23,7 @@ spec:
             path: /
             port: 80
         securityContext:
-          allowPrivilegeEscalation: true
+          privileged: true
       - name: sidecar
         image: nginx:latest
         ports:

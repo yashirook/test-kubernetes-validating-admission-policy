@@ -12,9 +12,9 @@ spec:
         operations: ["CREATE", "UPDATE"]
   variables:
     - name: containers
-      expression: "object.spec.template.spec.containers"
+      expression: object.spec.template.spec.containers
     - name: securityContexts
       expression: 'variables.containers.map(c, c.?securityContext)'
   validations:
-    - expression: "variables.securityContexts.all(sc, sc.?allowPrivilegeEscalation != optional.of(true))"
-      message: "Containers must not allow privilege escalation"
+    - expression: "variables.securityContexts.all(sc, sc.?privileged != optional.of(true))"
+      message: "Containers must not allow privileged mode"
