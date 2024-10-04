@@ -4,7 +4,7 @@ metadata:
   name: probe-deployment
   namespace: default
 spec:
-  replicas: 5
+  replicas: 4
   selector:
     matchLabels:
       app: probe-deployment
